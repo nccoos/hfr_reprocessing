@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AreaFilter</key>
+	<dict>
+		<key>FlagAngSeg_XXXX</key>
+		<string>Yes ;; No,Yes,False,True,Off,On</string>
+		<key>FlagLandFromSiteMap_XXXX</key>
+		<string>Yes ;; No,Yes,False,True,Off,On</string>
+	</dict>
+	<key>Conversion</key>
+	<dict>
+		<key>OutputLLUV</key>
+		<string>On ;; Off,On,Tandem,XYUV</string>
+	</dict>
+	<key>GreatCircle</key>
+	<dict>
+		<key>Ellipsiod</key>
+		<string>WGS84 ;; Default WGS84 Sphere Naut A1858 AMod Aussie B1841 C1880 C1866 E1830 EMod F60 F68 H56 Hayford K38 WGS66 SoAm69 Sov85 WGS72 GRS80</string>
+	</dict>
+</dict>
+</plist>

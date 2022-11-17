@@ -1,0 +1,32 @@
+0 HATY "Cape Hatteras, NC LongRange" ! 1 Site#, 4Char SiteCode,"Site Desc."
+35¡15.436'N,075¡31.203'W     ! 2 Receiver Antenna Latitude,Longitude
+158                          ! 3 Antenna Loop1 Bearing ¡T
+33 5.8474 5.8474             ! 4 Radial Last Range Cell. ALTERNATE RangeCell Info, 1st (km), Step (km)
+90.0                         ! 5 OBSOLETE Baseline Angle. Always 90.0
+1.0                          ! 6 OBSOLETE CSS Average for FirstOrderCalc
+4.575000                     ! 7 ALTERNATE. Tx Center Freq MHz
+1024                         ! 8 ALTERNATE Doppler Points
+0.00097656                   ! 9 ALTERNATE Doppler Resolution in Hz
+UTC 0.000 Atlantic/Reykjavik !10 Time Zone Abbr., fromUTC, CityZone
+250 3                        !11 Max. Velocity Limit, Num Pts Smoothing For FirstOrderCalc
+398.11 0 100.00              !12 Factor Down Peak limit 1st order Radials , 1=use peak null, Factor down 1rst order Waves
+0                            !13 Reserved
+10 17                        !14 Wave Process Range Cells, Estim. Max Wave Period (seconds)
+100.00 5.01  50.00 3.00      !15 Radials:Factor down peak nulls, Noise factor, Waves:Factor down peak nulls, Noise factor
+0 0 0                        !16 OBSOLETE (Was Keep CSA,Rad,CSSs)
+1.00 1.00  1.00 1.00         !17 Ampl Factors Ideal:Amp1,Amp2  Patt:Amp1,Amp2
+190 010                      !18 Coastline bearings, ¡T, Right/left hand facing sea
+40 20 2   20 20 25 15        !19 Music params eigrat,sigprat,diagrat. OBSOLETE Smooth Med,Smear,Vel,Gap.
+__                           !20 OBSOLETE Classic Rad,Tot Filename date,space chars (Use '-_' or '__')
+180 60 0 0                   !21 Rads:  Coverage min., Output Interval min., Interval Offset min., 0=Watch Timespan
+5.0                          !22 Bearing Resolution
+180 60 0 0                   !23 Waves:  Coverage min., Output Interval min., Interval Offset min., 0=Watch Timespan
+1.26                         !24 Ionosphere Noise Rejection Factor
+0                            !25 Doppler Noise Limit
+000 000                      !26 OBSOLETE Wave direction limits, ¡T, Right/left hand facing wave fronts
+1 5                          !27 Radial First Range Cell, WaveModel First Range Cell.
+360                          !28 Amplitude Factor Averaging Period min.
+10                           !29 WaveModel Minimum Dopper Points
+2.1 10.0 30.0  30.0 3.0      !30 RadialFiller RCLim, AngLim, CurLim,  AngGap, RngGap
+0 0                          !31 WaveModel Wave From Direction limit Center Bearing True, Sector Width deg.
+5 17                         !32 WaveModel Wave Period override limits.

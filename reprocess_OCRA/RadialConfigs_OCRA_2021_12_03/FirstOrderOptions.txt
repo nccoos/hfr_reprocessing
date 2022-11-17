@@ -1,0 +1,2 @@
+0        ! FirstOrderOptions Version
+0        ! Entries ! Entry: <ena> <method> <rStart> <Rstop> <maxVel> <dopPts> <peakF> <bNull> <NullF> <NoiseF> <bCSR> <CSRF> <nOpts>

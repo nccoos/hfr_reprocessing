@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EventLog</key>
+	<dict>
+		<key>EventDisplayThreshold</key>
+		<integer>-16</integer>
+		<key>EventLogThreshold</key>
+		<integer>0</integer>
+		<key>EventSequenceNumber</key>
+		<integer>0</integer>
+		<key>MaxDisplayLines</key>
+		<integer>1024</integer>
+		<key>WindowPosition</key>
+		<string>1    4x,  48y 1000w, 270h</string>
+	</dict>
+	<key>KeepUpApplications</key>
+	<dict>
+		<key>Archivalist</key>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Location</key>
+			<string>/Codar/SeaSonde/Apps/RadialTools/Archivalist.app</string>
+			<key>LostTime</key>
+			<real>7200</real>
+		</dict>
+		<key>SeaSondeAcquisition</key>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Location</key>
+			<string>/Codar/SeaSonde/Apps/RadialTools/SeaSondeAcquisition.app</string>
+			<key>LostTIme</key>
+			<real>1800</real>
+		</dict>
+		<key>SeaSondeController</key>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Location</key>
+			<string>/Codar/SeaSonde/Apps/RadialTools/SeaSondeController.app</string>
+			<key>LostTime</key>
+			<real>1800</real>
+		</dict>
+		<key>SpectraAverager</key>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Location</key>
+			<string>/Codar/SeaSonde/Apps/RadialTools/SpectraAverager.app</string>
+			<key>LostTime</key>
+			<real>7200</real>
+		</dict>
+	</dict>
+	<key>KeepUpSettings</key>
+	<dict>
+		<key>Enabled</key>
+		<true/>
+		<key>LostTime</key>
+		<real>3600</real>
+	</dict>
+	<key>Restart Script Stage1</key>
+	<array>
+		<string>Launch</string>
+		<string>DoGpsTimeSyncNow</string>
+	</array>
+	<key>Restart Script Stage2</key>
+	<array/>
+	<key>Restart Script Stage3</key>
+	<array>
+		<string>Kill</string>
+		<string>Terminal</string>
+	</array>
+	<key>Restart Script Stage4</key>
+	<array/>
+	<key>Sentinel</key>
+	<dict>
+		<key>DoPeriodicRestart</key>
+		<string>Yes  	;; No,Yes</string>
+		<key>RestartSchedule</key>
+		<string>59 23 * * *</string>
+	</dict>
+	<key>StartUp Script</key>
+	<array>
+		<string>Wait</string>
+		<string>10000</string>
+		<string>CreateFolder</string>
+		<string>/Codar/SeaSonde/Data/</string>
+		<string>CreateFolder</string>
+		<string>/Codar/SeaSonde/Archives/</string>
+		<string>CreateFolder</string>
+		<string>/Codar/SeaSonde/Data/Spectra/SpectraSeriesProcessed</string>
+		<string>Wait</string>
+		<string>1000</string>
+		<string>Launch</string>
+		<string>SeaSondeRadialSiteCheck 0 Foreground</string>
+		<string>Wait</string>
+		<string>22000</string>
+		<string>Launch</string>
+		<string>SeaSondeStartupExtras 0 Foreground</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>Launch</string>
+		<string>SeaSondeController 0 Foreground</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>Open</string>
+		<string>DoGpsTimeSyncNow</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>Launch</string>
+		<string>SeaSondeAcquisition 0 Foreground</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>Launch</string>
+		<string>SpectraAverager 0 Foreground</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>Launch</string>
+		<string>Archivalist 0 Foreground</string>
+		<string>Wait</string>
+		<string>5000</string>
+		<string>FinderOpen</string>
+		<string>RunSpectraAnalysis 0 Foreground</string>
+	</array>
+	<key>WatchVMSwap</key>
+	<dict>
+		<key>Check Interval</key>
+		<string>10 minutes</string>
+		<key>Enabled</key>
+		<string>Yes ;; No,Yes,False,True,Off,On</string>
+		<key>Minimum Computer Runtime</key>
+		<string>60 minutes</string>
+		<key>Minimum Disk Space Available</key>
+		<string>4 GB</string>
+		<key>Restart when Swap Space Exceeds</key>
+		<string>20 GB</string>
+		<key>Warning when Swap Space Exceeds</key>
+		<string>8 GB</string>
+	</dict>
+	<key>Windows</key>
+	<dict>
+		<key>Message</key>
+		<string>0  338x,  48y  331w, 104h</string>
+		<key>Restart</key>
+		<string>0  196x, 240y  525w, 252h</string>
+		<key>Status</key>
+		<string>0    4x,  48y 1000w, 270h</string>
+	</dict>
+</dict>
+</plist>
