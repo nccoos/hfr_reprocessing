@@ -1,7 +1,7 @@
 1 2 0       ! 1 Radial Processing: 0(Off),1(On); RadPtFilter: 0(Off),>=1(min pts); RadSmooth: OBSOLETE
 0           ! 2 Wave Processing:  0(Off),1(Model),2(Spectral),3(Both)
 0           ! 3 OBSOLETE File Archiving
-2 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),1(Header Ampl Adj),2(SeaEcho)
+0 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),1(Header Ampl Adj),2(SeaEcho)
 0           ! 5 Spectra Header Override: 0(Use CS Info),1(Use Header Info)
 1           ! 6 CSA Processing: 0(CSA->'Rad_'),1(CSS only)
 0 0 0       ! 7 Wave Processing: Offshore Waves: 0(Off),1(On); Bragg Symetry 0(Off),1(On); InnerWaves 0(Off),1(On)
