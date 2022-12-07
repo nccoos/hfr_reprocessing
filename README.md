@@ -31,7 +31,9 @@ Be sure to request these 2 things from CODAR -- not standard in SSR8u5.
 
 Drop key file onto SeaSonde Key app.  Once the key is recognized and it has RadialMetric output allowed the SeaSondeKey app will show "Met"  and OFFLINE for the offline version of this key.
 
-Install RadialMetric R2 addon -- get dmg from Hardikh -- like other SeaSonde installs. 
+![image](https://user-images.githubusercontent.com/4511520/206293100-a4f7f8da-aea6-4040-84cb-3080a62b0841.png)
+
+Install RadialMetric R2 addon. 
 You should now see release notes and documentation  
 - /Codar/RadialMetric_Notes.rtf 
 - /Codar/SeaSonde/Docs/Guide_RadialMetric 
@@ -63,7 +65,7 @@ $CosExec/RadialArchiver "$diagRA" "$metChar" "RadD" "$outMetricFolder" "$procFol
 
 #### Offline RadialMetric processing 
 
-SpectraOfflineReprocessing app (underlying BatchReprocess.pl) has the RadialMetric processing all commented out and disabled. Please see BatchReprocess_R8_UNC.pl for the chanages to make to reactivate RadialMetric processing in this script.
+SpectraOfflineReprocessing app (underlying BatchReprocess_R8.pl) has the RadialMetric processing all commented out and disabled. Please see [BatchReprocess_R8_UNC.pl](https://github.com/nccoos/hfr_reprocessing/blob/main/tools/BatchReprocess_versions/BatchReprocess_R8_UNC.pl) for the chanages to make to reactivate RadialMetric processing in this script.
 
 Besides uncommenting -- re-enabling code (in BatchReprocess_R8.pl) ) to output RadialMetric data, we added the new call that runs SpectraToRadialMetric (temporary processing files) and RadialArchiver to store and format data in /Codar/SeaSonde/Data/RadialMetric 
 
