@@ -11,13 +11,15 @@ $ cd /Users/codar/Documents/reprocess_HATY
 $ run_HATY_2021.py
 ```
 
-or place in crontab (be carefule that each one has time to finish before the next one starts).  Each year takes 2 or 3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month).
+or place in crontab being careful that each one has time to finish before the next one starts.  
 
 ```
 mm hh dd month weekday
 00 13 04 08 * cd /Users/codar/Documents/reprocess_OCRA; ./run_OCRA_2022.py  2>&1
 00 13 06 08 * cd /Users/codar/Documents/reprocess_OCRA; ./run_OCRA_2021.py  2>&1
 ```
+
+Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month). The above crontab example will run the run_OCRA_2022.py first with only SOP (do_sop=True) and (do_qccodar=False) on Aug 4 at 1300 so should take about 2 days, so the next script is set to run 2 days later. 
 
 ### 
 
