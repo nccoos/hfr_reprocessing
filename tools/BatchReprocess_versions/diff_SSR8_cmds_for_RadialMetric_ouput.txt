@@ -1,0 +1,107 @@
+
+
+In BatchReprocess.pl 
+
+## SpectraToRadial args: <bAppend> <bPattern> <sSuffix> <nDiag> <bWaveOnly> <sCfgFolder> <sProcFolder> <nAlim> <nBragg> <bKeepPatEnds> <nDopInterp> <nMetric>
+my $execStr = "$procToolsFolder/SpectraToRadial 0 $patt \"$suffix\" $diagSTR 0 \"$configsFolder/\" \"$CosProcFolder/\" 0 $UseBragg -1 0 -1 $doDopplerInterp";
+#$CosExec/SpectraToRadial 0 "$patt" "$suffix" "$diagSTR" "$waveOnly" "$cfgFolder" "$procFolder" "$bUseIntFOL" "$bUseBragg" -1 "$nDoppClassic" -1 "$nDopplerInterp"
+
+my $output = `$execStr`;
+foreach (FLOG){printf { $_ } "$output\n";}
+$didCurrent=1;
+
+## Usage: <nDiag> <cProcChar> <sOwner> <sRadFolder> <sProcFolder> <bLLUV> <bOpen> <sCfgFolder> <nPattern> <sDiagFolder> <bRadInfo> <bRadSource>
+my $execStr = "$procToolsFolder/RadialArchiver $diagRA \"$metChar\" \"RadD\" \"$CosRadialMetricFolder/$CosRadSubFolder{$pattType}/\" \"$CosProcFolder/\" $outputLLUV 0 \"$configsFolder\" $patt \"$CosDiagFolder\" 1 1 $doDopplerInterp $doRangeInterp";
+
+
+##############################################
+From AnalyzeSpectra -- script /Codar/SeaSonde/Apps/RadialTools/SpectraProcessing/AnalyzeSpectra -- similar to what to add to BatchReprocess.pl to run RM 
+Also can turn off RadialReponse output by removing folder location at end of RadialArchiver command 
+
+## Usage: <bAppend> <bPatt> <sSuf> <nDiag> <bWave> <sCfgFold> <sProcFold> <nAlim> <nBragg> <bKeepPatEnds> <nDopInterp>
+$CosExec/SpectraToRadial 0 "$patt" "$suffix" "$diagSTR" "$waveOnly" "$cfgFolder" "$procFolder" "$bUseIntFOL" "$bUseBragg" 0 "$nDoppClassic" -1 "$nDopplerInterp"
+didCurrent=1
+
+
+if [ $radialMetric -ne 0 ] && [ -e $CosExec/SpectraToRadialMetric ] ; then
+   ## Usage: <bAppend> <bPatt> <sSuf> <nDiag> <bWave> <sCfgFold> <sProcFold> <nAlim> <nBragg> <bKeepPatEnds> <nDopInterp> <nMetric>
+   # echo "$CosExec/SpectraToRadialMetric 0 \"$patt\" \"$suffix\" \"$diagME\" \"$waveOnly\" \"$cfgFolder\" \"$procFolder\" \"$bUseIntFOL\" \"$bUseBragg\" 0 \"$nDoppClassic\" -1 \"$nDopplerInterp\"  0"
+  $CosExec/SpectraToRadialMetric 0 "$patt" "$suffix" "$diagME" "$waveOnly" "$cfgFolder" "$procFolder" "$bUseIntFOL" "$bUseBragg" 0 "$nDoppClassic" -1 "$nDopplerInterp"  0
+  ## Usage: <nDiag> <cProcChar> <sOwner> <sRadFolder> <sProcFolder> <bLLUV> <bOpen> <sCfgFolder> <nPattern> <sDiagFolder> <bRadInfo> <bRadSource>
+  $CosExec/RadialArchiver "$diagRA" "$metChar" "RadD" "$outMetricFolder" "$procFolder" "$outputLLUV" 0 "$cfgFolder" "$patt" "$diagFolder" 1 1 "$nDopplerInterp" "$nRangeInterp" "$outResponseFolder"
+  DoNewRadialScript "$kind" "Metric"
+fi
+
+################################################
+
+Output from running on commandline tools without inputs to get usage
+cd /Codar/SeaSonde/Apps/RadialTools/SpectraProcessing
+
+########### SpectraToRadial ##################
+loretta:SpectraProcessing codar$ SpectraToRadial
+ Running SpectraToRadial 11.6.2
+  Usage: SpectraToRadial <bAppend> <bPatt> <sSuf> <nDiag> <bWave> <sCfgFold> <sProcFold> <nAlim> <nBragg> <bKeepEnds> <nDopInt> <nMetric> <nDopMult>
+   <bAppend>      Not used. use zero for place holder.
+   <bPattern>     0 Use PattIdeal.sav, 1 Use Patt.sav Attenna pattern.
+   <sSuffix>      Not used. Chars to append temporary Radial filename. (".Ideal")
+   <nDiag>        Diagnostic switch. 0 Off. Higher value is more diagnostic output.
+   <bWave>        Not used. Do only enough processing for WaveSpectral.
+   <sCfgFolder>   RadialConfigs folder path.
+   <sProcFolder>  Processing folder path.
+   <nAlim>        0 Use External FirstOrderSource.txt if it exists. 1 Use internal calc.
+   <nBragg>       -1=Use AnalysisOptions, 0=Both. 1=Left. 2=Right. 3=Both.
+   <bKeepPatEnds> -1=Use AnalysisOptions, 0=Remove, 1=Keep
+   <nDopInterp>   -1=Use AnalysisOptions, 0=None, 1=InterpDop 2x
+   <nMetric>      [Obsolete]-1=Use AnalysisOptions, 0=None, 1=Metric,Std, 2=Metric MaxVel.
+   <nDopMult>     Multiply FO doppler smoothing by this factor.
+
+########### RadialMetric R2 addon ##################
+loretta:SpectraProcessing codar$ SpectraToRadialMetric 
+ Running SpectraToRadialMetric 11.5.0
+  Usage: SpectraToRadialMetric <bAppend> <bPatt> <sSuf> <nDiag> <bWave> <sCfgFold> <sProcFold> <nAlim> <nBragg> <bKeepEnds> <nDopInt> <nMetric> <nDopMult>
+   <bAppend>      Not used. use zero for place holder.
+   <bPattern>     0 Use PattIdeal.sav, 1 Use Patt.sav Attenna pattern.
+   <sSuffix>      Not used. Chars to append temporary Radial filename. (".Ideal")
+   <nDiag>        Diagnostic switch. 0 Off. Higher value is more diagnostic output.
+   <bWave>        Not used. Do only enough processing for WaveSpectral.
+   <sCfgFolder>   RadialConfigs folder path.
+   <sProcFolder>  Processing folder path.
+   <nAlim>        0 Use External FirstOrderSource.txt if it exists. 1 Use internal calc.
+   <nBragg>       -1=Use AnalysisOptions, 0=Both. 1=Left. 2=Right. 3=Both.
+   <bKeepPatEnds> -1=Use AnalysisOptions, 0=Remove, 1=Keep
+   <nDopInterp>   -1=Use AnalysisOptions, 0=None, 1=InterpDop 2x
+   <nMetric>      -1=Use AnalysisOptions, 0=None, 1=Metric,Std, 2=Metric MaxVel.
+   <nDopMult>     Multiply FO doppler smoothing by this factor.
+
+
+########### RadialArchiver ##################
+loretta:SpectraProcessing codar$ RadialArchiver
+Running RadialArchiver 12.1.0
+ Usage: RadialArchiver <nDiag> <cProcChar> <sOwner> <sRadFolder> <sProcFolder> <bLLUV> <bOpen> <sCfgFolder> <nPattern> <sDiagFolder> <bRadInfo> <bRadSource> <nMultDoppler> <nMultRange>
+  <nDiag> 0=quiet, 999=much output
+  <cProcChar> i=ideal, m=measured
+  <sOwner> four char type id of file owner. Default is SeaDisplay.
+  <sRadFolder> path output radial folder. Use "" for default.
+  <sProcFolder> input source. Folder using standard names. File is source and use parent folder for processing info. Use "" for default.
+  <bLLUV> -1=UsePref, 0=Rad, 1=LLUV, 2=Rad/LLUV, 3=LLUV/Rad
+  <bOpen> 0=Don't open, 1=Send an Open AppleEvent to sOwner type.
+  <sCfgFolder> path to configs folder. Use "" for default.
+  <nPattern> -1=Unknown, 0=Ideal, 1=Meas
+  <sDiagFolder> path to diagnostics folder. Use "" for default.
+  <bRadInfo> Append NoiseFloor, FirstOrder info for short-time radials
+  <bRadSource> 0=Normal, 1=Metric radial source.
+  <nMultDoppler> Spectra Doppler interpolation factor.
+  <nMultRange> Spectra Range interpolation factor
+  <sMusicResponse> Folder to save Radial Metric Music response if created.  Diagnostic output level 999
+ File Processing char is ''
+ OwnerType is 'RadD'
+ Output Folder is /Codar/SeaSonde/Data/Radials/
+ Processing Folder is /Codar/SeaSonde/Data/Processing/
+ Configs Folder is /Codar/SeaSonde/Configs/RadialConfigs/
+ Antenna Pattern Type is -1 unknown
+ Diag Folder is /Codar/SeaSonde/Data/Diagnostics/
+ Append Radial Info is 0
+
+
+
+
