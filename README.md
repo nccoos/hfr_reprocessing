@@ -19,10 +19,18 @@ mm hh dd month weekday
 00 13 06 08 * cd /Users/codar/Documents/reprocess_OCRA; ./run_OCRA_2021.py  2>&1
 ```
 
-Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month). The above crontab example will run the run_OCRA_2022.py first with only SOP (do_sop=True) and (do_qccodar=False) on Aug 4 at 1300 so should take about 2 days, so the next script is set to run 2 days later. 
+Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month). The above crontab example will run the run_OCRA_2022.py first with only SOP (do_sop=True) and (do_qccodar=False) on Aug 4 at 1300 so should take about 2 days, so the next script is set to run 2 days later. These times are for output generated using only the IdealPattern. The amount of time will increase (likely double) for both if processing both IdealPattern and MeasPattern output.  
 
-### 
+### CODAR RadialConfig Settings
 
+To enable RadialMetric output for SOP:
+1. Edit line 21 of `AnalysisOptions.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+
+```
+   1           !21 Enable Radial Metric Output: 0(Off), 1(Enable), 2(Enable MaxVel.)
+```
+
+##
 ### Setup for Offline Processing with RadialMetric Output
 
 SSR8 requires a key file now that you obtain from CODAR.  Be sure to install SeaSonde Services on initial install to recognize key files.  Test install by running AnalyzeSpectra as you would on a CODAR site computer. 
