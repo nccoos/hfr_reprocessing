@@ -1,2 +1,2 @@
-*.pl linguist-detectable=False
+*.pl linguist-detectable=false
 *.py linguist-detectable=true
