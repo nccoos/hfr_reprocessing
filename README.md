@@ -2,7 +2,7 @@
 Python scripts for reprocessing CODAR HFR for all NC stations (DUCK, HATY, CORE, OCRA) from 2003 to 2022.
 
 ### Overview
-Python scripts run reprocessing from spectra to radial velocities for each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR RadialConfig files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. Each script has 12 command string lists that allow the processing to transition to a new set of RadialConfigs mid-month.  Each annual run script can then be tailored to follow the history of changes that occurred at the site.  These changes mihgt include the following:
+Python scripts run reprocessing from spectra to radial velocities for each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR RadialConfig files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. Each script has 12 command string lists that allow the processing to transition to a new set of RadialConfigs mid-month.  Each annual run script can then be tailored to follow the history of changes that occurred at the site.  These changes might include the following:
    - moving the position of the Rx antenna or changing it's orientation -- change made in `Header.txt`.
    - replacement of Rx cables or repaired cut resulting in change in phases and a new measured pattern -- change in `Phases.txt` and new `MeasPattern.txt`
 
