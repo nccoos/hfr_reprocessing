@@ -2,7 +2,9 @@
 Python scripts for reprocessing CODAR HFR for all NC stations (DUCK, HATY, CORE, OCRA) from 2003 to 2022.
 
 ### Overview
-Python scripts run each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR config files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. 
+Python scripts run reprocessing from spectra to radial velocities for each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR RadialConfig files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. Each script has 12 command string lists that allow the processing to transition to a new set of RadialConfigs mid-month.  Each annual run script can then be tailored to follow the history of changes that occurred at the site.  These changes mihgt include the following:
+   - moving the position of the Rx antenna or changing it's orientation -- change made in `Header.txt`.
+   - replacement of Rx cables or repaired cut resulting in change in phases and a new measured pattern -- change in `Phases.txt` and new `MeasPattern.txt`
 
 Run a script from the command line 
 
@@ -24,10 +26,23 @@ Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 ho
 ### CODAR RadialConfig Settings
 
 To enable RadialMetric output for SOP:
-1. Edit line 21 of `AnalysisOptions.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
-
+   - Edit line 21 of `AnalysisOptions.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
 ```
    1           !21 Enable Radial Metric Output: 0(Off), 1(Enable), 2(Enable MaxVel.)
+```
+
+To enable IdealPattern __only__ output for SOP:
+   - Ensure `Phases.txt` set accordingly in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+   - Edit line 4 of of `AnalysisOptions.txt` in each RadialConfig folder.
+```
+0 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),
+```
+
+To enable MeasPattern __only__ output for SOP:
+   - Ensure correct `MeasPattern.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+   - Edit line 4 of of `AnalysisOptions.txt` in each RadialConfig folder.
+```
+1 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),
 ```
 
 ##
