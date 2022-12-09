@@ -52,7 +52,7 @@ And programs added
 - /Codar/SeaSonde/Apps/Bin/RadialfromMetric 
 - /Codar/SeaSonde/Apps/SpectraTools/SpectraProcessing/SpectraToRadialMetric  
 
-#### Disable RadialResponse (RM) output
+#### Disable RadialResponse output with RadialMetric (RM) processing
 
 With RadialMetric processing you still get the RM ouptut that are 3-4 Mb each. 
 /Data/RadialMetric/IdealPatthern/RDLv_HATY_YYYY_MM_DD_HHMM.ruv  
