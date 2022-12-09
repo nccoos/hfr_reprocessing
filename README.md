@@ -54,10 +54,10 @@ And programs added
 
 #### Disable RadialResponse output with RadialMetric (RM) processing
 
-With RadialMetric processing you still get the RM ouptut that are 3-4 Mb each. 
+With RadialMetric processing you still get the RM output that are 3-4 Mb each. 
 /Data/RadialMetric/IdealPatthern/RDLv_HATY_YYYY_MM_DD_HHMM.ruv  
 
-However, there is a (new) additional output file with RM called the RadialResponse File. These are huge at 30-50 Mb each 
+However, there is a (new) additional output file with RM called the RadialResponse File. These are huge at 30-50 Mb each.
 /Data/RadialResponses/IdealPattern/ASRP_HATY_YYYY_MM_DD_HHMM.rsp
 
 Disable generating this ouput by editing AnalyzeSpectra script in /Codar/SeaSonde/Apps/RadialTools/SpectraProcessing/  
@@ -77,7 +77,7 @@ $CosExec/RadialArchiver "$diagRA" "$metChar" "RadD" "$outMetricFolder" "$procFol
 
 SpectraOfflineReprocessing app (underlying BatchReprocess_R8.pl) has the RadialMetric processing all commented out and disabled. Please see [BatchReprocess_R8_UNC.pl](https://github.com/nccoos/hfr_reprocessing/blob/main/tools/BatchReprocess_versions/BatchReprocess_R8_UNC.pl) for the chanages to make to reactivate RadialMetric processing in this script.
 
-Besides uncommenting -- re-enabling code (in BatchReprocess_R8.pl) ) to output RadialMetric data, we added the new call that runs SpectraToRadialMetric (temporary processing files) and RadialArchiver to store and format data in /Codar/SeaSonde/Data/RadialMetric 
+Besides uncommenting -- re-enabling code (in BatchReprocess_R8.pl) ) to output RadialMetric data, we added the new call that runs SpectraToRadialMetric (temporary processing files) and RadialArchiver to store and format data in /Codar/SeaSonde/Data/RadialMetric.  Note that `$outResponseFolder` is omitted in the RadialArchiver call (as done for AnalyzeSpectra script above) to avoid producing the huge RadialResponse files.
 
 ```
 ################## RadialMetric output  ################# 
