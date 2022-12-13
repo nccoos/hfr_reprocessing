@@ -104,11 +104,12 @@ x = []
 
 # extend list of command strings for each month to run
 # uncomment to run the month
-## x.extend(cmdstr01) # <---- Aug 2010 Lightning 
+## x.extend(cmdstr01) # NO DATA <---- Aug 2010 Lightning 
 ## x.extend(cmdstr02)
 ## x.extend(cmdstr03)
 ## x.extend(cmdstr04)
 ## x.extend(cmdstr05) 
+
 x.extend(cmdstr06)
 x.extend(cmdstr07)
 x.extend(cmdstr08)

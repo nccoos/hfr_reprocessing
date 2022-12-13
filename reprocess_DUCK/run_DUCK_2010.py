@@ -110,6 +110,7 @@ x.extend(cmdstr05)
 x.extend(cmdstr06)
 x.extend(cmdstr07)
 x.extend(cmdstr08)
+
 ## x.extend(cmdstr09) ## NO DATA <-- Lightning strike Aug 18 until June 2011
 ## x.extend(cmdstr10)
 ## x.extend(cmdstr11)

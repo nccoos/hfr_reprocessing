@@ -1,0 +1,27 @@
+1 DUCK                     ! 1 Site #, Name
+36¡10.870'N,075¡45.030'W   ! 2 Latitude and longitude of site          
+113                        ! 3 Bearing of antenna 1 clockwise from true north
+33 5.8514 5.8514           ! 4 Process Range Cells, 1rst Range (km), Range Step (km) from SSC
+90.0                       ! 5 Baseline angle--between line from site 1 to site 2 & east 
+1.0                        ! 6 Averaging time (hours)
+4.537183                   ! 7 Tx Center Freq MHz from SSC
+1024                       ! 8 Number of frequency points
+0.00390853                 ! 9 Frequency increment (Hz)                               
+GMT 0.000                  !10 Time zone
+350 3                      !11 Estimate of maximum current (cm/s), # pts for running average in firmss
+150.0 0 100.0              !12 Factor down peak limit 1st order Radials , 0 = no 2nd order, Factor down 1rst order Waves
+15                         !13 Spectra averaged (not used)
+3 17                       !14 Wave Process Range Cell, Estim. Max Wave Period (seconds)
+7.5 5.0  10.0 2.0          !15 Radials:Factor down peak nulls, Noise factor, Waves:Factor down peak nulls, Noise factor
+168 168 288                !16 Keep Proc CSA, Keep Rad+4xOlderRad, Keep Proc CSS
+1.00 1.00  1.00 1.00       !17 Forced Ideal Amp1,Amp2; Patt Amp1,Amp2
+163 343                    !18 RH, LH coast angle, integer deg. True (0-360deg), looking toward sea.	
+40 20 2  20 20 25 15       !19 Music params eigrat,sigprat,diagrat;  Gaussian Smooth med width¡, smear width, vel thresh, gap
+__                         !20 FileName Rad,Tot Separators date,space chars (old compat is '/ ')
+180 60 0 0                 !21 Rads:  Coverage min., Output Interval min., Interval Offset min., 0=watch timespan
+5.0                        !22 Bearing Resolution
+180 60 0 0                 !23 WaveModel:  Coverage min., Output Interval min., Interval Offset min., 0=Watch Timespan
+1.0                        !24 Ionosphere Noise Removal Factor
+0                          !25 Doppler Noise Limit
+000 000                    !26 RH, LH wave limits deg NCW.
+1 1                        !27 Radial First Range Cell, WaveModel First Range Cell.

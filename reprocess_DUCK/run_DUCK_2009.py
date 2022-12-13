@@ -101,6 +101,8 @@ x = []
 
 # extend list of command strings for each month to run
 # uncomment to run the month
+
+# just reprocess Jan 2009
 x.extend(cmdstr01)
 x.extend(cmdstr02)
 x.extend(cmdstr03)
