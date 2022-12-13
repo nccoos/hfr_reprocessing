@@ -2,7 +2,9 @@
 Python scripts for reprocessing CODAR HFR for all NC stations (DUCK, HATY, CORE, OCRA) from 2003 to 2022.
 
 ### Overview
-Python scripts run each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR config files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. 
+Python scripts run reprocessing from spectra to radial velocities for each site for each year (e.g. run_SITE_YYYY.py).  Each site has its own set of run scripts and CODAR RadialConfig files. Each script can run SpectraOfflineProcessing (SOP) or qccodar processing step or both. Each script has 12 command string lists that allow the processing to transition to a new set of RadialConfigs mid-month.  Each annual run script can then be tailored to follow the history of changes that occurred at the site.  These changes might include the following:
+   - moving the position of the Rx antenna or changing it's orientation -- change made in `Header.txt`.
+   - replacement of Rx cables or repaired cut resulting in change in phases and a new measured pattern -- change in `Phases.txt` and new `MeasPattern.txt`
 
 Run a script from the command line 
 
@@ -19,10 +21,31 @@ mm hh dd month weekday
 00 13 06 08 * cd /Users/codar/Documents/reprocess_OCRA; ./run_OCRA_2021.py  2>&1
 ```
 
-Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month). The above crontab example will run the run_OCRA_2022.py first with only SOP (do_sop=True) and (do_qccodar=False) on Aug 4 at 1300 so should take about 2 days, so the next script is set to run 2 days later. 
+Each run_SITE_YYYY.py takes 2-3 days to run the SpectraOfflineProcessing (4-6 hours for each month) and ~1 day to run qccodar (2 hours for each month). The above crontab example will run the run_OCRA_2022.py first with only SOP (do_sop=True) and (do_qccodar=False) on Aug 4 at 1300 so should take about 2 days, so the next script is set to run 2 days later. These times are for output generated using only the IdealPattern. The amount of time will increase (likely double) for both if processing both IdealPattern and MeasPattern output.  
 
-### 
+### CODAR RadialConfig Settings
 
+To enable RadialMetric output for SOP:
+   - Edit line 21 of `AnalysisOptions.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+```
+   1           !21 Enable Radial Metric Output: 0(Off), 1(Enable), 2(Enable MaxVel.)
+```
+
+To enable IdealPattern __only__ output for SOP:
+   - Ensure `Phases.txt` set accordingly in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+   - Edit line 4 of of `AnalysisOptions.txt` in each RadialConfig folder.
+```
+0 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),
+```
+
+To enable MeasPattern __only__ output for SOP:
+   - Ensure correct `MeasPattern.txt` in each RadialConfig folder /User/codar/Documents/reprocess_SITE/RadialConfigs_SITE_YYYY_MM_DD.
+   - Edit line 4 of of `AnalysisOptions.txt` in each RadialConfig folder.
+```
+1 0         ! 4 Antenna Pattern: 0(Ideal),1(Measured),2(Both); ForceAmplitudes: 0(Off),
+```
+
+##
 ### Setup for Offline Processing with RadialMetric Output
 
 SSR8 requires a key file now that you obtain from CODAR.  Be sure to install SeaSonde Services on initial install to recognize key files.  Test install by running AnalyzeSpectra as you would on a CODAR site computer. 
@@ -44,12 +67,12 @@ And programs added
 - /Codar/SeaSonde/Apps/Bin/RadialfromMetric 
 - /Codar/SeaSonde/Apps/SpectraTools/SpectraProcessing/SpectraToRadialMetric  
 
-#### Disable RadialResponse (RM) output
+#### Disable RadialResponse output with RadialMetric (RM) processing
 
-With RadialMetric processing you still get the RM ouptut that are 3-4 Mb each. 
+With RadialMetric processing you still get the RM output that are 3-4 Mb each. 
 /Data/RadialMetric/IdealPatthern/RDLv_HATY_YYYY_MM_DD_HHMM.ruv  
 
-However, there is a (new) additional output file with RM called the RadialResponse File. These are huge at 30-50 Mb each 
+However, there is a (new) additional output file with RM called the RadialResponse File. These are huge at 30-50 Mb each.
 /Data/RadialResponses/IdealPattern/ASRP_HATY_YYYY_MM_DD_HHMM.rsp
 
 Disable generating this ouput by editing AnalyzeSpectra script in /Codar/SeaSonde/Apps/RadialTools/SpectraProcessing/  
@@ -69,7 +92,7 @@ $CosExec/RadialArchiver "$diagRA" "$metChar" "RadD" "$outMetricFolder" "$procFol
 
 SpectraOfflineReprocessing app (underlying BatchReprocess_R8.pl) has the RadialMetric processing all commented out and disabled. Please see [BatchReprocess_R8_UNC.pl](https://github.com/nccoos/hfr_reprocessing/blob/main/tools/BatchReprocess_versions/BatchReprocess_R8_UNC.pl) for the chanages to make to reactivate RadialMetric processing in this script.
 
-Besides uncommenting -- re-enabling code (in BatchReprocess_R8.pl) ) to output RadialMetric data, we added the new call that runs SpectraToRadialMetric (temporary processing files) and RadialArchiver to store and format data in /Codar/SeaSonde/Data/RadialMetric 
+Besides uncommenting -- re-enabling code (in BatchReprocess_R8.pl) ) to output RadialMetric data, we added the new call that runs SpectraToRadialMetric (temporary processing files) and RadialArchiver to store and format data in /Codar/SeaSonde/Data/RadialMetric.  Note that `$outResponseFolder` is omitted in the RadialArchiver call (as done for AnalyzeSpectra script above) to avoid producing the huge RadialResponse files.
 
 ```
 ################## RadialMetric output  ################# 
