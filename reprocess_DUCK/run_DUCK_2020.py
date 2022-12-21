@@ -29,7 +29,7 @@ outpath='/Volumes/TRANSFER/reprocess_DUCK/'
 
 # Toggle what's processed
 do_sop = True
-do_qccodar = False
+do_qccodar = True
 
 #################
 os.chdir(outpath)
@@ -86,7 +86,9 @@ cmdstr11 = [soptool + ' -s ' + inpath + ' -b CSS_ -1 "2020/11/01 00:00" -2 "2020
             renametool + ' . "Reprocess_*" "2020_11"',
             ]
 
-cmdstr12 = [soptool + ' -s ' + inpath + ' -b CSS_ -1 "2020/12/01 00:00" -2 "2021/01/01 00:00" -c ' + configpath + 'RadialConfigs_DUCK_2020_01_01 -t '+outpath,
+# NO DATA -- Dec 11 @ 1600 UTC until Dec 17 @ 1900 UTC -- also Phases change from -120/-125 to -125/-80
+cmdstr12 = [soptool + ' -s ' + inpath + ' -b CSS_ -1 "2020/12/01 00:00" -2 "2020/12/11 16:00" -c ' + configpath + 'RadialConfigs_DUCK_2020_01_01 -t '+outpath,
+            soptool + ' -s ' + inpath + ' -b CSS_ -1 "2020/12/17 19:00" -2 "2021/01/01 00:00" -c ' + configpath + 'RadialConfigs_DUCK_2020_12_17 -t '+outpath,
             renametool + ' . "Reprocess_*" "2020_12"',
             ]
 
